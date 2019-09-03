@@ -5,6 +5,7 @@
  */
  body {
     overflow-x: hidden;
+    font-family: 'Muli',sans-serif;
   }
   
   #sidebar-wrapper {
@@ -63,3 +64,6 @@
     }
   }
   
+  .modal .modal-dialog {
+    max-width: 850px;
+  }

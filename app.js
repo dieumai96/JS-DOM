@@ -1,4 +1,4 @@
-let API_ENDPOINT = 'http://localhost:9000'
+let API_ENDPOINT = 'http://localhost:3000'
 var attempt = 3;
 const onLogin = document.getElementById('onLogin');
 
