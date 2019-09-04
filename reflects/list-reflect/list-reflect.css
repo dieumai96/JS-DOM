@@ -70,3 +70,45 @@
   .form-control{
     outline: none;
   }
+ ul.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center
+ }
+ ul.pagination li a{
+    padding: 11px 16px;
+    cursor: pointer;
+    color: #36f;
+ }
+ ul.pagination li a.active{
+     background: #36f;
+     color: #fff;
+
+ }
+ td.miss-dealine{
+     color: red;
+ }
+ td.status-1{
+     color: #f20707;
+ }
+ td.status-2{
+    color: #5D66DD;
+ }
+ td.status-3{
+    color: #f7b10e;
+ }
+ td.status-4{
+    color: #9b9892;
+ }
+ td.status-5{
+    color: #0ad9e9;
+ }
+ td.status-6{
+    color: #77e830;
+ }
+ td.status-7{
+    color: #000000;
+ }
+ td.action{
+     text-align: center;
+ }

@@ -35,6 +35,7 @@ async function init() {
         headers: {
             'Authorization': localStorage.getItem('token'),
         },
+       
         success: async function (result) {
             loadingView.style.display = "none";
             if (result.status == 0) {
@@ -105,7 +106,7 @@ function setContentTable(content) {
             '<td>' + e.owerName + '</td>' +
             '<td>' + e.code + '</td>' +
             '<td>' + e.flatType + '</td>'
-            allRow += row;
+        allRow += row;
     })
 
     $('#body-table').html(allRow);

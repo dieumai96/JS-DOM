@@ -17,13 +17,13 @@
     <!-- Custom styles for this template -->
     <link href="./list-reflect.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Exo:400,400i,500,500i,600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- <div id="loading">
+    <div id="loading">
         <img src="https://www.bg-guide.org/images/loading.gif" alt="">
-    </div> -->
+    </div>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
@@ -85,17 +85,62 @@
                     <thead>
                         <tr>
                             <th>Action</th>
-                            <th>Block</th>
                             <th>Number</th>
-                            <th>Code</th>
-                            <th>Ower Name</th>
-                            <th>Flat type</th>
+                            <th>Title</th>
+                            <th>Scope</th>
+                            <th>Time created</th>
+                            <th>Handler</th>
+                            <th>Status</th>
+                            <th>Deadline</th>
+                            <th>Evaluate</th>
+                            <th>Reslove</th>
                         </tr>
                     </thead>
                     <tbody id="body-table">
 
                     </tbody>
                 </table>
+                <div class="container-fluid">
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous">
+                                    <span style="font-size: 12px;">
+                                        < </span> </a> </li> <li class="page-item page-item-number">
+                                            <a (click)="changePage(item.page,'page')"
+                                                class="page-link dpl-block active">1</a>
+                            </li>
+                            <li class="page-item page-item-number">
+                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">2</a>
+                            </li>
+                            <li class="page-item page-item-number">
+                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">3</a>
+                            </li>
+                            <li class="page-item page-item-number">
+                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">4</a>
+                            </li>
+                            <li class="page-item page-item-number">
+                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">5</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous">
+                                    <span style="font-size: 12px;"> > </span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="changePage('','next')" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
 
             </div>
         </div>
