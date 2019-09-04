@@ -1,4 +1,5 @@
 const onLogout = document.getElementById('onLogout');
+
 onLogout.addEventListener('click', function (e) {
     e.preventDefault();
     actionLogout();
@@ -46,9 +47,9 @@ async function init() {
             if (result.status == 0) {
                 if (result.data) {
                     setContentTable(result.data);
+                    totalItem = result.totalCount;
+                    renderPagination(totalItem);
                 }
-                totalItem = result.totalCount;
-                console.log(totalItem);
             } else {
                 console.log("Khong tim thay danh sach");
             }
@@ -114,6 +115,26 @@ function setContentTable(content) {
     $('#body-table').html(allRow);
     removeMissDeadlineClass();
 }
+{/* <li class="page-item page-item-number">
+<a class="page-link dpl-block active" style="border-left: 0px;border-right: 0px;">1</a>
+</li> */}
+function renderPagination(totalCount) {
+    let contentPagination = document.getElementById('content-page');
+    let totalPage = Math.ceil(totalCount / 20);
+    let allPage = '';
+    for (let i = 0; i < totalPage; i++) {
+        let page = "<li class = 'page-item page-item-number'>" +
+            `<a class = 'page-link dpl-block-${i}' id = 'dpl-block-${i}'> ` + (i + 1) + "</a>"
+        allPage += page;
+    }
+    $('#content-page').html(allPage);
+    toggleClassActivePagination();
+}
+
+function toggleClassActivePagination() {
+    let item = document.getElementById('dpl-block-0');
+    item.classList.add('active');
+}
 
 function removeMissDeadlineClass() {
     let listClass = document.querySelectorAll('td.miss-dealine')
@@ -127,8 +148,6 @@ function removeMissDeadlineClass() {
         }
     })
 }
-
-
 
 function transformText(text, length) {
     let transform = '';

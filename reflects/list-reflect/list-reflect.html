@@ -101,7 +101,7 @@
                     </tbody>
                 </table>
                 <div class="container-fluid">
-                    <nav>
+                    <nav class="pagination-content">
                         <ul class="pagination">
                             <li class="page-item">
                                 <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous">
@@ -109,26 +109,21 @@
                                 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous">
+                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous"
+                                    style="border-radius: 0.25rem 0 0 0.25rem">
                                     <span style="font-size: 12px;">
-                                        < </span> </a> </li> <li class="page-item page-item-number">
-                                            <a (click)="changePage(item.page,'page')"
-                                                class="page-link dpl-block active">1</a>
-                            </li>
-                            <li class="page-item page-item-number">
-                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">2</a>
-                            </li>
-                            <li class="page-item page-item-number">
-                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">3</a>
-                            </li>
-                            <li class="page-item page-item-number">
-                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">4</a>
-                            </li>
-                            <li class="page-item page-item-number">
-                                <a (click)="changePage(item.page,'page')" class="page-link dpl-block ">5</a>
-                            </li>
+                                        > </span> </a> </li>
+                        </ul>
+                        <!-- <li class="page-item page-item-number">
+                                <a class="page-link dpl-block active">1</a>
+                            </li> -->
+                        <ul class="pagination" id="content-page">
+                           
+                        </ul>
+                        <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous">
+                                <a class="page-link" aria-label=" Previous"
+                                    style="border-radius: 0 0.25rem 0.25rem 0;border-left: 0;">
                                     <span style="font-size: 12px;"> > </span>
                                 </a>
                             </li>
