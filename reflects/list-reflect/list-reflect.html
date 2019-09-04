@@ -109,10 +109,10 @@
                                 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous"
+                                <a class="page-link" onclick="prevPage()" aria-label=" Previous"
                                     style="border-radius: 0.25rem 0 0 0.25rem">
                                     <span style="font-size: 12px;">
-                                        > </span> </a> </li>
+                                        < </span> </a> </li>
                         </ul>
                         <!-- <li class="page-item page-item-number">
                                 <a class="page-link dpl-block active">1</a>
@@ -122,7 +122,7 @@
                         </ul>
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" aria-label=" Previous"
+                                <a class="page-link" aria-label=" Previous" onclick="nextPage()"
                                     style="border-radius: 0 0.25rem 0.25rem 0;border-left: 0;">
                                     <span style="font-size: 12px;"> > </span>
                                 </a>

@@ -1,5 +1,6 @@
 const onLogout = document.getElementById('onLogout');
 let totalItem;
+let pageNow;
 onLogout.addEventListener('click', function (e) {
     e.preventDefault();
     actionLogout();
@@ -30,7 +31,7 @@ let fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlEIjoiRW1wbG
 async function init(page) {
     const loadingView = document.getElementById('loading');
     loadingView.style.display = "block";
-
+    pageNow = page;
     await $.ajax({
         method: 'POST',
         url: `${API_ENDPOINT}/api/reflects/reflects4Employee`,
@@ -171,6 +172,24 @@ async function selectMinPage() {
         $(`.dpl-block-${i}`).removeClass('active');
     }
     $(`.dpl-block-0`).addClass('active');
+}
+
+async function prevPage() {
+    await init(pageNow - 1);
+    let totalPage = Math.ceil(totalItem / 20);
+    for (let i = 0; i <= totalPage; i++) {
+        $(`.dpl-block-${i}`).removeClass('active');
+    }
+    $(`.dpl-block-${pageNow - 1}`).addClass('active');
+}
+
+async function nextPage() {
+    await init(pageNow + 1);
+    let totalPage = Math.ceil(totalItem / 20);
+    for (let i = 0; i <= totalPage; i++) {
+        $(`.dpl-block-${i}`).removeClass('active');
+    }
+    $(`.dpl-block-${pageNow - 1}`).addClass('active');
 }
 
 function removeMissDeadlineClass() {
