@@ -28,7 +28,7 @@ function goToMenu(action) {
 
 let API_ENDPOINT = 'http://172.104.167.189:5000';
 let fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlEIjoiRW1wbG95ZWVfU1NCXzExIiwidGltZUNyZWF0ZWQiOjE1NTM3NjcyNzg0NDEsImZ1bGxOYW1lIjoiVnUgVmFuIFRodXkiLCJiaXJ0aERhdGUiOjE1NTIzMjM2MDAwMDAsImVtYWlsIjoiYWRAZ21haWwuY29tIiwibm90ZSI6IjIyMmpqamoiLCJyb2xlcyI6WyJBRE1JTiIsIlJDTiIsIkNTUiJdLCJhY2NvdW50VHlwZSI6IkVtcGxveWVlIiwiYnVpbGRpbmdJRCI6IkJ1aWxkaW5nXzMiLCJpYXQiOjE1Njc1NzA2MjcsImV4cCI6MTU2OTc0Mjk5NzYyN30.bI8EZI2Mdw6KEO5aIR7rW867oJMEauFUKO6gj4805qY'
-async function init(page) {
+async function init(page, timeLoad) {
     const loadingView = document.getElementById('loading');
     loadingView.style.display = "block";
     pageNow = page;
@@ -49,7 +49,7 @@ async function init(page) {
                 if (result.data) {
                     await setContentTable(result.data);
                     totalItem = result.totalCount;
-                    await renderPagination(totalItem);
+                    await timeLoad == 'first-time' ? renderPagination(totalItem, 'first-time') : renderPagination(totalItem, 'not-first');
                 }
             } else {
                 console.log("Khong tim thay danh sach");
@@ -93,7 +93,7 @@ async function init(page) {
     }
 }
 
-init(1);
+init(1, 'first-time');
 
 function setContentTable(content) {
     const tableContent = document.getElementById('body-table');
@@ -154,20 +154,43 @@ function setContentTable(content) {
 {/* <li class="page-item page-item-number">
 <a class="page-link dpl-block active" style="border-left: 0px;border-right: 0px;">1</a>
 </li> */}
-function renderPagination(totalCount) {
+function renderPagination(totalCount, timeLoad) {
     let contentPagination = document.getElementById('content-page');
     let totalPage = getTotalPage();
     let allPage = '';
-    for (let i = 0; i < totalPage; i++) {
-        let page = "<li class = 'page-item page-item-number'>" +
-            `<a class = 'page-have-number page-link dpl-block-${i}'  id = 'dpl-block-${i}'> ` + (i + 1) + "</a>"
-        allPage += page;
+    if (totalPage > 5 && (pageNow <= 5)) {
+        for (let i = 0; i < 5; i++) {
+            let page = "<li class = 'page-item page-item-number'>" +
+                `<a class = 'page-have-number page-link dpl-block-${i}'  id = 'dpl-block-${i}'> ` + (i + 1) + "</a>"
+            allPage += page;
+        }
     }
+    if (totalPage < 5) {
+        for (let i = 0; i < totalPage; i++) {
+            let page = "<li class = 'page-item page-item-number'>" +
+                `<a class = 'page-have-number page-link dpl-block-${i}'  id = 'dpl-block-${i}'> ` + (i + 1) + "</a>"
+            allPage += page;
+        }
+        toggleClassActivePaginationFirstTime();
+    }
+
+    if (totalPage > 5 && pageNow > 5) {
+        let page = ((pageNow + 4) > totalPage) ? (totalPage - 4) : (pageNow - 1);
+        let lengthPage = ((pageNow + 4) > totalPage) ? totalPage : (pageNow + 4);
+        for (let i = page - 1; i < lengthPage; i++) {
+            let page = "<li class = 'page-item page-item-number'>" +
+                `<a class = 'page-have-number page-link dpl-block-${i}'  id = 'dpl-block-${i}'> ` + (i + 1) + "</a>"
+            allPage += page;
+        }
+    }
+
     $('#content-page').html(allPage);
-    toggleClassActivePaginationFirstTime();
+    if (timeLoad == 'first-time') {
+        toggleClassActivePaginationFirstTime();
+    }
 }
 
-
+// 1 2 3 4 5 6 7 8 9 10
 
 function toggleClassActivePaginationFirstTime() {
     let item = document.getElementById('dpl-block-0');
@@ -175,7 +198,7 @@ function toggleClassActivePaginationFirstTime() {
 }
 
 async function selectPage(id, page, totalItem) {
-    await init(page + 1);
+    await init(page + 1, 'not-first');
     for (let i = 0; i <= totalItem; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
     }
@@ -184,7 +207,7 @@ async function selectPage(id, page, totalItem) {
 
 async function selectPageMax() {
     let totalPage = getTotalPage();
-    await init(totalPage);
+    await init(totalPage, 'not-first');
     for (let i = 0; i <= totalPage - 1; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
     }
@@ -192,7 +215,7 @@ async function selectPageMax() {
 }
 
 async function selectMinPage() {
-    await init(1);
+    await init(1, 'not-first');
     let totalPage = getTotalPage();
     for (let i = 0; i <= totalPage; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
@@ -202,7 +225,7 @@ async function selectMinPage() {
 
 async function prevPage() {
     let totalPage = getTotalPage();
-    await init(pageNow - 1);
+    await init(pageNow - 1, 'not-first');
     for (let i = 0; i <= totalPage; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
     }
@@ -210,7 +233,7 @@ async function prevPage() {
 }
 
 async function nextPage() {
-    await init(pageNow + 1);
+    await init(pageNow + 1, 'not-first');
     let totalPage = getTotalPage();
     for (let i = 0; i <= totalPage; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
