@@ -191,6 +191,7 @@ function validateForm() {
                 loadingView.style.display = "none";
                 if (result.status == 0) {
                     $("#myModal").modal('hide')
+                    clearForm();
                     alert("Add flat successfully!");
                     init();
                 } else {
@@ -211,8 +212,10 @@ function randomNumber(to) {
 }
 
 function clearForm() {
-    document.getElementById('slect-block').value("");
-    document.getElementById('input-number').value("");
+    $(document).ready(function () {
+        $('#slect-block').value("");
+        $('#input-number').value("");
+    })
 }
 
 function actionLogout() {
