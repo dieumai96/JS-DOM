@@ -1,5 +1,5 @@
 const onLogout = document.getElementById('onLogout');
-
+let totalItem;
 onLogout.addEventListener('click', function (e) {
     e.preventDefault();
     actionLogout();
@@ -27,9 +27,10 @@ function goToMenu(action) {
 
 let API_ENDPOINT = 'http://172.104.167.189:5000';
 let fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlEIjoiRW1wbG95ZWVfU1NCXzExIiwidGltZUNyZWF0ZWQiOjE1NTM3NjcyNzg0NDEsImZ1bGxOYW1lIjoiVnUgVmFuIFRodXkiLCJiaXJ0aERhdGUiOjE1NTIzMjM2MDAwMDAsImVtYWlsIjoiYWRAZ21haWwuY29tIiwibm90ZSI6IjIyMmpqamoiLCJyb2xlcyI6WyJBRE1JTiIsIlJDTiIsIkNTUiJdLCJhY2NvdW50VHlwZSI6IkVtcGxveWVlIiwiYnVpbGRpbmdJRCI6IkJ1aWxkaW5nXzMiLCJpYXQiOjE1Njc1NzA2MjcsImV4cCI6MTU2OTc0Mjk5NzYyN30.bI8EZI2Mdw6KEO5aIR7rW867oJMEauFUKO6gj4805qY'
-async function init() {
+async function init(page) {
     const loadingView = document.getElementById('loading');
     loadingView.style.display = "block";
+
     await $.ajax({
         method: 'POST',
         url: `${API_ENDPOINT}/api/reflects/reflects4Employee`,
@@ -39,25 +40,33 @@ async function init() {
         data: {
             isConcludeCount: true,
             limit: 20,
-            page: 1
+            page
         },
-        success: function (result) {
+        success: async function (result) {
             loadingView.style.display = "none";
-            let totalItem;
             if (result.status == 0) {
                 if (result.data) {
-                    setContentTable(result.data);
+                    await setContentTable(result.data);
                     totalItem = result.totalCount;
-                    renderPagination(totalItem);
+                    await renderPagination(totalItem);
                 }
             } else {
                 console.log("Khong tim thay danh sach");
             }
         },
     });
+
+    let pageLink = document.querySelectorAll('.page-have-number');
+    pageLink.forEach((e, index) => {
+        let id = e.getAttribute('id');
+        let item = document.getElementById(`${id}`);
+        item.addEventListener('click', function () {
+            selectPage(id, index, Math.ceil(totalItem / 20))
+        })
+    })
 }
 
-init();
+init(1);
 
 function setContentTable(content) {
     const tableContent = document.getElementById('body-table');
@@ -124,16 +133,44 @@ function renderPagination(totalCount) {
     let allPage = '';
     for (let i = 0; i < totalPage; i++) {
         let page = "<li class = 'page-item page-item-number'>" +
-            `<a class = 'page-link dpl-block-${i}' id = 'dpl-block-${i}'> ` + (i + 1) + "</a>"
+            `<a class = 'page-have-number page-link dpl-block-${i}'  id = 'dpl-block-${i}'> ` + (i + 1) + "</a>"
         allPage += page;
     }
     $('#content-page').html(allPage);
-    toggleClassActivePagination();
+    toggleClassActivePaginationFirstTime();
 }
 
-function toggleClassActivePagination() {
+
+
+function toggleClassActivePaginationFirstTime() {
     let item = document.getElementById('dpl-block-0');
     item.classList.add('active');
+}
+
+async function selectPage(id, page, totalItem) {
+    await init(page + 1);
+    for (let i = 0; i <= totalItem; i++) {
+        $(`.dpl-block-${i}`).removeClass('active');
+    }
+    $(`.dpl-block-${page}`).addClass('active');
+}
+
+async function selectPageMax() {
+    let totalPage = Math.ceil(totalItem / 20);
+    await init(totalPage);
+    for (let i = 0; i <= totalPage - 1; i++) {
+        $(`.dpl-block-${i}`).removeClass('active');
+    }
+    $(`.dpl-block-${totalPage - 1}`).addClass('active');
+}
+
+async function selectMinPage() {
+    await init(1);
+    let totalPage = Math.ceil(totalItem / 20);
+    for (let i = 0; i <= totalPage; i++) {
+        $(`.dpl-block-${i}`).removeClass('active');
+    }
+    $(`.dpl-block-0`).addClass('active');
 }
 
 function removeMissDeadlineClass() {

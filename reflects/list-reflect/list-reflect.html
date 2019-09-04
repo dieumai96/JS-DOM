@@ -104,7 +104,7 @@
                     <nav class="pagination-content">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" (click)="changePage('','prev')" aria-label=" Previous">
+                                <a class="page-link" onclick="selectMinPage()" aria-label=" Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -118,7 +118,7 @@
                                 <a class="page-link dpl-block active">1</a>
                             </li> -->
                         <ul class="pagination" id="content-page">
-                           
+
                         </ul>
                         <ul class="pagination">
                             <li class="page-item">
@@ -128,7 +128,7 @@
                                 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" (click)="changePage('','next')" aria-label="Next">
+                                <a class="page-link" onclick="selectPageMax()" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
