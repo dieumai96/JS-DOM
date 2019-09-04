@@ -104,35 +104,33 @@
                     <nav class="pagination-content">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" onclick="selectMinPage()" aria-label=" Previous">
+                                <a class="page-link" onclick="selectMinPage()" id="prev-to-0" aria-label=" Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" onclick="prevPage()" aria-label=" Previous"
+                                <a class="page-link" onclick="prevPage()" id="prev-one" aria-label=" Previous"
                                     style="border-radius: 0.25rem 0 0 0.25rem">
                                     <span style="font-size: 12px;">
-                                        < </span> </a> </li>
-                        </ul>
-                        <!-- <li class="page-item page-item-number">
-                                <a class="page-link dpl-block active">1</a>
+                                        < </span> </a> </li> </ul> <!-- <li class="page-item page-item-number">
+                                            <a class="page-link dpl-block active">1</a>
                             </li> -->
-                        <ul class="pagination" id="content-page">
+                            <ul class="pagination" id="content-page">
 
-                        </ul>
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" aria-label=" Previous" onclick="nextPage()"
-                                    style="border-radius: 0 0.25rem 0.25rem 0;border-left: 0;">
-                                    <span style="font-size: 12px;"> > </span>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" onclick="selectPageMax()" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
+                            </ul>
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" id="next-one" aria-label=" Previous" onclick="nextPage()"
+                                        style="border-radius: 0 0.25rem 0.25rem 0;border-left: 0;">
+                                        <span style="font-size: 12px;"> > </span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" id="next-to-max" onclick="selectPageMax()" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
                     </nav>
 
                 </div>

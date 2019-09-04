@@ -62,9 +62,35 @@ async function init(page) {
         let id = e.getAttribute('id');
         let item = document.getElementById(`${id}`);
         item.addEventListener('click', function () {
-            selectPage(id, index, Math.ceil(totalItem / 20))
+            selectPage(id, index, getTotalPage())
         })
     })
+    let prev0 = document.getElementById("prev-to-0");
+    let prevOne = document.getElementById("prev-one");
+    if (pageNow == 1) {
+        prev0.style.pointerEvents = 'none';
+        prev0.style.opacity = .5;
+        prevOne.style.pointerEvents = 'none';
+        prevOne.style.opacity = .5;
+    } else {
+        prev0.style.pointerEvents = 'unset';
+        prev0.style.opacity = 'initial';
+        prevOne.style.pointerEvents = 'unset';
+        prevOne.style.opacity = 'initial';
+    }
+    let nextMax = document.getElementById("next-to-max");
+    let nextOne = document.getElementById("next-one");
+    if (pageNow == getTotalPage()) {
+        nextMax.style.pointerEvents = 'none';
+        nextMax.style.opacity = .5;
+        nextOne.style.pointerEvents = 'none';
+        nextOne.style.opacity = .5;
+    } else {
+        nextMax.style.pointerEvents = 'unset';
+        nextMax.style.opacity = 'initial';
+        nextOne.style.pointerEvents = 'unset';
+        nextOne.style.opacity = 'initial';
+    }
 }
 
 init(1);
@@ -130,7 +156,7 @@ function setContentTable(content) {
 </li> */}
 function renderPagination(totalCount) {
     let contentPagination = document.getElementById('content-page');
-    let totalPage = Math.ceil(totalCount / 20);
+    let totalPage = getTotalPage();
     let allPage = '';
     for (let i = 0; i < totalPage; i++) {
         let page = "<li class = 'page-item page-item-number'>" +
@@ -157,7 +183,7 @@ async function selectPage(id, page, totalItem) {
 }
 
 async function selectPageMax() {
-    let totalPage = Math.ceil(totalItem / 20);
+    let totalPage = getTotalPage();
     await init(totalPage);
     for (let i = 0; i <= totalPage - 1; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
@@ -167,7 +193,7 @@ async function selectPageMax() {
 
 async function selectMinPage() {
     await init(1);
-    let totalPage = Math.ceil(totalItem / 20);
+    let totalPage = getTotalPage();
     for (let i = 0; i <= totalPage; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
     }
@@ -175,8 +201,8 @@ async function selectMinPage() {
 }
 
 async function prevPage() {
+    let totalPage = getTotalPage();
     await init(pageNow - 1);
-    let totalPage = Math.ceil(totalItem / 20);
     for (let i = 0; i <= totalPage; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
     }
@@ -185,7 +211,7 @@ async function prevPage() {
 
 async function nextPage() {
     await init(pageNow + 1);
-    let totalPage = Math.ceil(totalItem / 20);
+    let totalPage = getTotalPage();
     for (let i = 0; i <= totalPage; i++) {
         $(`.dpl-block-${i}`).removeClass('active');
     }
@@ -219,4 +245,8 @@ function transformText(text, length) {
         }
     }
     return transform
+}
+
+function getTotalPage() {
+    return Math.ceil(totalItem / 20);
 }
