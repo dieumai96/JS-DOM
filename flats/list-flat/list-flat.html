@@ -117,7 +117,7 @@
                 </div>
 
                 <!-- Modal body -->
-                <form>
+                <form id="form-create-flat">
 
                     <div class="modal-body">
                         <div class="row">
@@ -127,6 +127,9 @@
                                     <select name="block" class="form-control" id="slect-block">
 
                                     </select>
+                                    <div class="alert alert-danger" id="alert-block">
+                                        <span>Block is required</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">
@@ -134,30 +137,47 @@
                                     <label for="">Number <span style="color : red">(*)</span></label>
                                     <input type="text" class="form-control" id="input-number"
                                         placeholder="Input number">
+                                    <div class="alert alert-danger" id="alert-number">
+                                        <span>Number is required</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label for="">Ower Name</label>
-                                    <input type="text" class="form-control" placeholder="Input ower name">
+                                    <input type="text" class="form-control" id="owername" placeholder="Input ower name">
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label for="">Phone</label>
                                     <input type="text" class="form-control" id="input-phone" placeholder="Input Phone">
+                                    <div class="alert alert-danger" id="alert-phone-invalid">
+                                        <span>Phone is invalid</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label for="">Acreage <span style="color : red">(*)</span></label>
-                                    <input type="text" class="form-control" placeholder="Input acreage">
+                                    <input type="number" id="acreage" class="form-control" placeholder="Input acreage">
+                                    <div class="alert alert-danger" id="alert-acreage">
+                                        <span>Acreage is invalid</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="">Phone</label>
-                                    <input type="text" class="form-control" placeholder="Input phone">
+                                    <label for="">Flat type</label>
+                                    <input type="number" class="form-control" id="flat-type"
+                                        placeholder="Input flat type">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="">Note</label>
+                                    <textarea class="form-control" rows="4" id="input-note"
+                                        placeholder="Input note"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +187,7 @@
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" type="submit"
+                        <button type="button" class="btn btn-primary" id="submit-form-flat" type="submit"
                             onclick="validateForm()">Create</button>
                     </div>
                 </form>

@@ -67,3 +67,21 @@
   .modal .modal-dialog {
     max-width: 850px;
   }
+  .alert {
+    padding: .4rem 1.25rem;
+  }
+  #alert-number{
+    display: none;
+  }
+  #alert-block{
+    display: none;
+  }
+  #alert-phone-invalid{
+    display: none;
+  }
+  #alert-acreage{
+    display: none;
+  }
+  .form-control{
+    outline: none;
+  }
