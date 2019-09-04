@@ -4,6 +4,27 @@ onLogout.addEventListener('click', function (e) {
     e.preventDefault();
     actionLogout();
 })
+
+function goToMenu(action) {
+    switch (action) {
+        case 'Flat': {
+            window.location = "./list-flat.html";
+            break
+        }
+        case 'Notification': {
+            console.log("Notification");
+            break
+        }
+        case 'Reflect': {
+            window.location = "./../../reflects/list-reflect/list-reflect.html";
+            break
+        }
+        default: {
+            break
+        }
+    }
+}
+
 let API_ENDPOINT = 'http://localhost:9000'
 async function init() {
     const loadingView = document.getElementById('loading');
@@ -76,7 +97,7 @@ init();
 function setContentTable(content) {
     const tableContent = document.getElementById('body-table');
     let allRow = '';
-    content.forEach(e => {
+    content.forEach((e, index) => {
         var row = '<tr>' +
             '<td class="action">' + `<i class='fa fa-eye' id = ${e._id} ` + '</i>' + `<i class='fa fa-edit' id = ${e._id} ` + '</i>' + `<i class='fa fa-trash' id = ${e._id} ` + '</i>' + '</td > ' +
             '<td>' + e.block + '</td>' +
@@ -84,7 +105,7 @@ function setContentTable(content) {
             '<td>' + e.owerName + '</td>' +
             '<td>' + e.code + '</td>' +
             '<td>' + e.flatType + '</td>'
-        allRow += row;
+            allRow += row;
     })
 
     $('#body-table').html(allRow);

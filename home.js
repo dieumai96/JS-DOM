@@ -13,6 +13,10 @@ function goToMenu(action) {
             console.log("Notification");
             break
         }
+        case 'Reflect': {
+            window.location = "./reflects/list-reflect/list-reflect.html";
+            break
+        }
         default: {
             break
         }

@@ -15,15 +15,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
 
     <!-- Custom styles for this template -->
-    <link href="./list-flat.css" rel="stylesheet">
+    <link href="./list-reflect.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
-    <div id="loading">
+    <!-- <div id="loading">
         <img src="https://www.bg-guide.org/images/loading.gif" alt="">
-    </div>
+    </div> -->
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
@@ -107,95 +107,6 @@
     <!-- Bootstrap core JavaScript -->
 
     <!-- Menu Toggle Script -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add new flat</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <form id="form-create-flat">
-
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="">Block <span style="color : red">(*)</span></label>
-                                    <select name="block" class="form-control" id="slect-block">
-
-                                    </select>
-                                    <div class="alert alert-danger" id="alert-block">
-                                        <span>Block is required</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="">Number <span style="color : red">(*)</span></label>
-                                    <input type="text" class="form-control" id="input-number"
-                                        placeholder="Input number">
-                                    <div class="alert alert-danger" id="alert-number">
-                                        <span>Number is required</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="">Ower Name</label>
-                                    <input type="text" class="form-control" id="owername" placeholder="Input ower name">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="">Phone</label>
-                                    <input type="text" class="form-control" id="input-phone" placeholder="Input Phone">
-                                    <div class="alert alert-danger" id="alert-phone-invalid">
-                                        <span>Phone is invalid</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="">Acreage <span style="color : red">(*)</span></label>
-                                    <input type="number" id="acreage" class="form-control" placeholder="Input acreage">
-                                    <div class="alert alert-danger" id="alert-acreage">
-                                        <span>Acreage is invalid</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="">Flat type</label>
-                                    <input type="number" class="form-control" id="flat-type"
-                                        placeholder="Input flat type">
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-lg-12">
-                                <div class="form-group">
-                                    <label for="">Note</label>
-                                    <textarea class="form-control" rows="4" id="input-note"
-                                        placeholder="Input note"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="submit-form-flat" type="submit"
-                            onclick="validateForm()">Create</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
     <script>
         $("#menu-toggle").click(function (e) {
             e.preventDefault();
@@ -205,7 +116,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="./list-flat.js"></script>
+    <script src="./list-reflect.js"></script>
 </body>
 
 </html>
