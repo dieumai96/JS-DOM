@@ -4,7 +4,7 @@ onLogout.addEventListener('click', function (e) {
     e.preventDefault();
     actionLogout();
 })
-let API_ENDPOINT = 'http://localhost:3000'
+let API_ENDPOINT = 'http://localhost:9000'
 async function init() {
     const loadingView = document.getElementById('loading');
     loadingView.style.display = "block";
@@ -89,6 +89,14 @@ function setContentTable(content) {
 
     $('#body-table').html(allRow);
 }
+// open popup
+
+$(document).ready(function () {
+    $("#myBtn").click(function () {
+        getBuildingInfo();
+        $("#myModal").modal({ backdrop: 'static', keyboard: false });
+    });
+});
 
 async function getBuildingInfo() {
     const loadingView = document.getElementById('loading');
@@ -100,7 +108,7 @@ async function getBuildingInfo() {
             'Authorization': localStorage.getItem('token'),
         },
         data: {
-            buildingID: "5ce4f3dbbb019d106fa6274e"
+            buildingID: "5d5cb5b94c3b5b2a0c6ca11a"
         },
         success: async function (result) {
             loadingView.style.display = "none";
@@ -116,15 +124,35 @@ async function getBuildingInfo() {
     });
 }
 
+function validateForm() {
+    let selectBlock = document.getElementById('slect-block');
+    let inputNumber = document.getElementById('input-number');
+    let inputPhone = document.getElementById('input-phone');
+    let errorAlert = [];
+    if (!inputNumber.value) {
+        errorAlert.push("Input number is required")
+    }
+    if (!selectBlock.value) {
+        errorAlert.push("Block is required")
+    }
+    let isVNPhoneMobile = /^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/;
+    if (inputPhone.value && !isVNPhoneMobile.test(inputPhone.value)) {
+        errorAlert.push('Phone is invalid');
+    }
+    let randomError = 0;
+    if (errorAlert.length) {
+        randomError = randomNumber(errorAlert.length);
+        alert(errorAlert[randomError])
+    } else {
+        alert("Success, you can submit");
+    }
+}
+
+function randomNumber(to) {
+    return Math.floor(Math.random() * to)
+}
 
 function actionLogout() {
     localStorage.clear();
     window.location = "./../../login.html";
 }
-
-$(document).ready(function () {
-    $("#myBtn").click(function () {
-        getBuildingInfo();
-        $("#myModal").modal();
-    });
-});

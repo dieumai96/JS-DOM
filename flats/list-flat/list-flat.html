@@ -117,29 +117,60 @@
                 </div>
 
                 <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label for="">Block</label>
-                                <select name="block" class="form-control" id="slect-block">
+                <form>
 
-                                </select>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="">Block <span style="color : red">(*)</span></label>
+                                    <select name="block" class="form-control" id="slect-block">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="">Number <span style="color : red">(*)</span></label>
+                                    <input type="text" class="form-control" id="input-number"
+                                        placeholder="Input number">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="">Ower Name</label>
+                                    <input type="text" class="form-control" placeholder="Input ower name">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="">Phone</label>
+                                    <input type="text" class="form-control" id="input-phone" placeholder="Input Phone">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="">Acreage <span style="color : red">(*)</span></label>
+                                    <input type="text" class="form-control" placeholder="Input acreage">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="">Phone</label>
+                                    <input type="text" class="form-control" placeholder="Input phone">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label for="">Number</label>
-                                <input type="text" class="form-control" placeholder="Number">
-                            </div>
-                        </div>
+
                     </div>
-                </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit"
+                            onclick="validateForm()">Create</button>
+                    </div>
+                </form>
 
             </div>
         </div>
