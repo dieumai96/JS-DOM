@@ -8,7 +8,9 @@ background-repeat: no-repeat;
 height: 100%;
 font-family: 'Numans', sans-serif;
 }
-
+.d-flex{
+    background: #e3e9ee
+}
 .container{
 height: 100%;
 align-content: center;

@@ -7,7 +7,9 @@
     overflow-x: hidden;
     font-family: 'Muli',sans-serif;
   }
-  
+  .d-flex{
+    background: #e3e9ee
+}
   #sidebar-wrapper {
     min-height: 100vh;
     margin-left: -15rem;

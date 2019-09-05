@@ -10,15 +10,12 @@
     <title>Simple Sidebar - Start Bootstrap Template</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
-
-    <!-- Custom styles for this template -->
-    <link href="./dashboard/reflects/list-reflect/list-reflect.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Exo:400,400i,500,500i,600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="/dashboard/reflects/detail-reflect/detail-reflect.css" rel="stylesheet">
 
 </head>
 
@@ -27,6 +24,7 @@
         <img src="https://www.bg-guide.org/images/loading.gif" alt="">
     </div>
     <div class="d-flex" id="wrapper">
+
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Start Bootstrap </div>
@@ -81,62 +79,32 @@
             </nav>
 
             <div class="container-fluid">
-                <button class="btn btn-primary" style="margin-bottom: 10px;float: right" id="myBtn">Add new
-                    flat</button>
-                <table class="table table-bordered table-hover" style="background: #fff">
-                    <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Number</th>
-                            <th>Title</th>
-                            <th>Scope</th>
-                            <th>Time created</th>
-                            <th>Handler</th>
-                            <th>Status</th>
-                            <th>Deadline</th>
-                            <th>Evaluate</th>
-                            <th>Reslove</th>
-                        </tr>
-                    </thead>
-                    <tbody id="body-table">
+                <div class="content">
+                    <div class="header">
+                        <span class="menu-title">Chi tiết phản ánh</span>
+                        <span class="title-reflect" style="float: right" id="title-reflect"></span>
+                        <span class="title-reflect" style="float: right;cursor: pointer;"
+                            onclick="goToListReflect()">List > </span>
+                    </div>
+                    <div class="main-reflect">
+                        <div class="row">
+                            <div class="col-md-9 content-left">
+                                <div style="padding: 15px;">
+                                    <div id="user-infomation">
+                                    </div>
+                                    <div style="clear: both"></div>
+                                    <div id="handler">
 
-                    </tbody>
-                </table>
-                <div class="container-fluid">
-                    <nav class="pagination-content">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" onclick="selectMinPage()" id="prev-to-0" aria-label=" Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" onclick="prevPage()" id="prev-one" aria-label=" Previous"
-                                    style="border-radius: 0.25rem 0 0 0.25rem">
-                                    <span style="font-size: 12px;">
-                                        < </span> </a> </li> </ul> <!-- <li class="page-item page-item-number">
-                                            <a class="page-link dpl-block active">1</a>
-                            </li> -->
-                            <ul class="pagination" id="content-page">
+                                    </div>
+                                    <div id="status-reflect">
 
-                            </ul>
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" id="next-one" aria-label=" Previous" onclick="nextPage()"
-                                        style="border-radius: 0 0.25rem 0.25rem 0;border-left: 0;">
-                                        <span style="font-size: 12px;"> > </span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" id="next-to-max" onclick="selectPageMax()" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                    </nav>
-
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 content-right"></div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -153,14 +121,7 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="./dashboard/reflects/list-reflect/list-reflect.js"></script>
-    <script>
-        var now = moment()
-
-    </script>
+    <script src="/dashboard/reflects/detail-reflect/detail-reflect.js"></script>
 </body>
 
 </html>

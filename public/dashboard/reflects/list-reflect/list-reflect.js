@@ -146,7 +146,7 @@ function setContentTable(content) {
             `<td class = "status-${e.status}" id = 'custom-status'>` + e.statusCustom + '</td>' +
             `<td class = 'miss-dealine' id = ${e.id} deadline = ${e.deadline}>` + transformDate(e.deadline, 'hour') + '</td>' +
             '<td>' + e.scoreCustom + '</td>' +
-            '<td>' + "<button class ='btn btn-primary' style='background: #73a1ff;border : none;font-size : 12px;text-transform : uppercase;font-family : 'Exo',sans-serif'>Reslove</button>" + '</td>'
+            '<td>' + `<button class ="btn btn-primary" onclick = viewDetailReflect('${genCodeRandom(24) + e.id + genCodeRandom(24)}') style="background: #73a1ff;border : none;font-size : 12px;text-transform : uppercase;font-family : "Exo",sans-serif">Reslove</button>` + '</td>'
         allRow += row;
     })
 
@@ -156,6 +156,10 @@ function setContentTable(content) {
 {/* <li class="page-item page-item-number">
 <a class="page-link dpl-block active" style="border-left: 0px;border-right: 0px;">1</a>
 </li> */}
+function viewDetailReflect(data) {
+    window.location.href = `/reflect/detail/${data}`
+}
+
 function renderPagination(totalCount, timeLoad) {
     let contentPagination = document.getElementById('content-page');
     let totalPage = getTotalPage();
@@ -279,6 +283,17 @@ function transformDate(value, type) {
         return type == 'hour' ? moment(String(stringDate)).format("h:mm:ss A | DD/MM/YYYY") : moment(String(stringDate)).format("DD/MM/YYYY");
     }
 }
+
 function getTotalPage() {
     return Math.ceil(totalItem / 20);
 }
+
+function genCodeRandom(otpLength) {
+    let codeRandom = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (let i = 0; i < otpLength; i++) {
+        codeRandom += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return codeRandom;
+};

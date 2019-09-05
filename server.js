@@ -31,6 +31,11 @@ app.get('/list-flat', function (req, res) {
 app.get('/reflect', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'public/dashboard/reflects/list-reflect/list-reflect.html'));
 });
+app.get('/reflect/detail/:id', function (req, res) {
+    
+    res.sendFile(path.resolve(__dirname, 'public/dashboard/reflects/detail-reflect/detail-reflect.html'));
+});
+// res.sendFile(path.resolve(__dirname, 'public/dashboard/reflects/list-reflect/list-reflect.html'));
 
 // app.get('/login', function (req, res) {
 //     res.sendFile(path.resolve(__dirname, 'login.html'));
