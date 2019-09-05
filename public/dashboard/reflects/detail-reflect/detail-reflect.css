@@ -99,3 +99,45 @@
     z-index: 999;
     display: none;
   }
+  .content-area{
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  .content-area .colspan-expland{
+    width: 48px;
+    height: 48px;
+    background: #5D66DD;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+  }
+  .content-area .colspan-expland i{
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  #reaction-reflect {
+    margin-top: 40px;
+  }
+
+  #reaction-reflect #list-comment{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #reaction-reflect #list-comment li{
+    padding: 10px 0;
+  }
+  #status-1 {color: #f20707}
+  #status-2 {color: #5D66DD}
+  #status-3 {color: #f7b10e}
+  #status-4 {color: #9b9892}
+  #status-5 {color: #0ad9e9}
+  #status-6 {color: #77e830}
+  #status-7 {color: #000000}
