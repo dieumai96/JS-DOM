@@ -1,0 +1,120 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+ body {
+    overflow-x: hidden;
+    font-family: 'Muli',sans-serif;
+  }
+  
+  #sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+  }
+  
+  #sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  #sidebar-wrapper .list-group {
+    width: 15rem;
+  }
+  
+  #page-content-wrapper {
+    min-width: 100vw;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+  }
+  .container-fluid{
+    padding-top: 20px;
+  }
+  i{
+    font-family: 'Font awesome';
+    font-weight: 100;
+    cursor: pointer;
+  }
+  #loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+    display: none;
+  }
+  @media (min-width: 768px) {
+    #sidebar-wrapper {
+      margin-left: 0;
+    }
+  
+    #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+    }
+  
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: -15rem;
+    }
+  }
+  
+  .modal .modal-dialog {
+    max-width: 850px;
+  }
+  .form-control{
+    outline: none;
+  }
+  .pagination-content{
+      display: flex;
+      align-items: center;
+      justify-content: center
+  }
+ ul.pagination{
+     float: left;
+ }
+ ul.pagination li a{
+    padding: 11px 16px;
+    cursor: pointer;
+    color: #36f;
+ }
+ ul.pagination li a.active{
+     background: #36f;
+     color: #fff;
+
+ }
+ td.miss-dealine{
+     color: red;
+ }
+ td.status-1{
+     color: #f20707;
+ }
+ td.status-2{
+    color: #5D66DD;
+ }
+ td.status-3{
+    color: #f7b10e;
+ }
+ td.status-4{
+    color: #9b9892;
+ }
+ td.status-5{
+    color: #0ad9e9;
+ }
+ td.status-6{
+    color: #77e830;
+ }
+ td.status-7{
+    color: #000000;
+ }
+ td.action{
+     text-align: center;
+ }
+ .dpl-block-1{
+     
+ }
