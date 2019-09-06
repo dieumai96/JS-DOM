@@ -1,8 +1,13 @@
+
+const { fromEvent, pipe, of, forkJoin } = rxjs;
+const { tap, map, skipWhile, exhaustMap, catchError, concatMap, } = rxjs.operators;
+const { ajax } = rxjs.ajax;
 const onLogout = document.getElementById('onLogout');
 onLogout.addEventListener('click', function (e) {
     e.preventDefault();
     actionLogout();
 })
+
 function goToMenu(action) {
     switch (action) {
         case 'Flat': {
@@ -24,207 +29,28 @@ function goToMenu(action) {
 }
 let API_ENDPOINT = 'http://172.104.167.189:5000';
 let fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlEIjoiRW1wbG95ZWVfU1NCXzExIiwidGltZUNyZWF0ZWQiOjE1NTM3NjcyNzg0NDEsImZ1bGxOYW1lIjoiVnUgVmFuIFRodXkiLCJiaXJ0aERhdGUiOjE1NTIzMjM2MDAwMDAsImVtYWlsIjoiYWRAZ21haWwuY29tIiwibm90ZSI6IjIyMmpqamoiLCJyb2xlcyI6WyJBRE1JTiIsIlJDTiIsIkNTUiJdLCJhY2NvdW50VHlwZSI6IkVtcGxveWVlIiwiYnVpbGRpbmdJRCI6IkJ1aWxkaW5nXzMiLCJpYXQiOjE1Njc1NzA2MjcsImV4cCI6MTU2OTc0Mjk5NzYyN30.bI8EZI2Mdw6KEO5aIR7rW867oJMEauFUKO6gj4805qY';
-let data = {
-    "assignTo": "Employee_SSB_11",
-    "assignToName": "Vu Van Thuy",
-    "buildingID": "Building_3",
-    "content": "2",
-    "createdBy": "User_SSB_25",
-    "deadline": 1557478980000,
-    "flatID": "Flat_SSB_50",
-    "id": "Reflect_SSB_124",
-    "image": [],
-    "jobScope": "ADMIN",
-    "meta": {
-        "timeCreated": 1557289249866,
-        "timeModified": 1557400897197
-    },
-    "scores": 4,
-    "soPhong": "108",
-    "status": 6,
-    "title": "phản ánh 2",
-    "type": "Reflect",
-    "userCreated": {
-        "code": "SSBA2YWF",
-        "flatID": "Flat_SSB_50",
-        "fullName": "hue",
-        "loNha": "A2",
-        "phone": "0375555555",
-        "soPhong": "108"
-    },
-    "buildingCode": "SSB",
-    "buildingName": "Sun Square 1",
-    "countComment": 7,
-    "lastProcess": {
-        "buildingID": "Building_3",
-        "commentType": 1,
-        "createByPhone": "0375555555",
-        "createdBy": "User_SSB_25",
-        "createdByName": "hue",
-        "id": "ReflectProcess_SSB_251",
-        "meta": {
-            "timeCreated": 1557400897196
-        },
-        "reflectID": "Reflect_SSB_124",
-        "status": 6,
-        "type": "ReflectProcess"
-    },
-    "listComment": [
-        {
-            "assignTo": "Employee_SSB_5",
-            "buildingID": "Building_3",
-            "commentType": 2,
-            "createdBy": "Employee_SSB_5",
-            "fromName": "Nguyễn Đình Thạo : ThaoJ",
-            "fromPhone": "0868767158",
-            "id": "ReflectAssign_SSB_277",
-            "meta": {
-                "timeCreated": 1557290106548
-            },
-            "reflectID": "Reflect_SSB_124",
-            "toName": "Nguyễn Đình Thạo : ThaoJ",
-            "toPhone": "0868767158",
-            "type": "ReflectAssign"
-        },
-        {
-            "assignTo": "Employee_SSB_11",
-            "buildingID": "Building_3",
-            "commentType": 2,
-            "createdBy": "Employee_SSB_43",
-            "fromName": "uuu",
-            "fromPhone": "0888888889",
-            "id": "ReflectAssign_SSB_283",
-            "meta": {
-                "timeCreated": 1557306201477
-            },
-            "reflectID": "Reflect_SSB_124",
-            "toName": "Vu Van Thuy",
-            "toPhone": "0352161854",
-            "type": "ReflectAssign"
-        },
-        {
-            "accountCreate": {
-                "id": "Employee_SSB_11",
-                "type": "Employee"
-            },
-            "buildingID": "Building_3",
-            "commentType": 3,
-            "content": [
-                "kkkkk"
-            ],
-            "email": "ad@gmail.com",
-            "fullName": "Vu Van Thuy",
-            "id": "Comment_SSB_335",
-            "meta": {
-                "timeCreated": 1557308030606
-            },
-            "msgType": "Text",
-            "phone": "0352161854",
-            "read": false,
-            "reflectID": "Reflect_SSB_124",
-            "roles": [
-                "ADMIN",
-                "RCN",
-                "CSR"
-            ],
-            "type": "Comment"
-        },
-        {
-            "buildingID": "Building_3",
-            "commentType": 1,
-            "createByPhone": "0352161854",
-            "createdBy": "Employee_SSB_11",
-            "createdByName": "Vu Van Thuy",
-            "id": "ReflectProcess_SSB_233",
-            "meta": {
-                "timeCreated": 1557308034882
-            },
-            "reflectID": "Reflect_SSB_124",
-            "status": 2,
-            "type": "ReflectProcess"
-        },
-        {
-            "buildingID": "Building_3",
-            "commentType": 1,
-            "createByPhone": "0352161854",
-            "createdBy": "Employee_SSB_11",
-            "createdByName": "Vu Van Thuy",
-            "id": "ReflectProcess_SSB_234",
-            "meta": {
-                "timeCreated": 1557308040071
-            },
-            "reflectID": "Reflect_SSB_124",
-            "status": 5,
-            "type": "ReflectProcess"
-        },
-        {
-            "accountCreate": {
-                "id": "Employee_SSB_11",
-                "type": "Employee"
-            },
-            "buildingID": "Building_3",
-            "commentType": 3,
-            "content": [
-                "Phản ánh của bạn đã được xử lý, xin vui lòng vào đánh giá và xác nhận hoàn thành."
-            ],
-            "email": "ad@gmail.com",
-            "fullName": "Vu Van Thuy",
-            "id": "Comment_SSB_336",
-            "meta": {
-                "timeCreated": 1557308040594
-            },
-            "msgType": "Text",
-            "phone": "0352161854",
-            "read": false,
-            "reflectID": "Reflect_SSB_124",
-            "reflectProcessID": "ReflectProcess_SSB_233",
-            "roles": [
-                "ADMIN",
-                "RCN",
-                "CSR"
-            ],
-            "type": "Comment"
-        },
-        {
-            "buildingID": "Building_3",
-            "commentType": 1,
-            "createByPhone": "0375555555",
-            "createdBy": "User_SSB_25",
-            "createdByName": "hue",
-            "id": "ReflectProcess_SSB_251",
-            "meta": {
-                "timeCreated": 1557400897196
-            },
-            "reflectID": "Reflect_SSB_124",
-            "status": 6,
-            "type": "ReflectProcess"
-        }
-    ],
-    "emplAssignedInfo": {
-        "name": "Vu Van Thuy",
-        "phone": "0352161854"
-    }
-}
+let data = {}
+let listFile = {};
 async function init() {
     const loadingView = document.getElementById('loading');
     loadingView.style.display = "block";
-    loadingView.style.display = "none";
-    transformData(data);
-    // await $.ajax({
-    //     method: 'POST',
-    //     url: `${API_ENDPOINT}/api/reflects/reflectsByID`,
-    //     headers: {
-    //         'Authorization': fakeToken,
-    //     },
-    //     data: {
-    //         reflectID: getId()
-    //     },
-    //     success: async function (result) {
-    //         loadingView.style.display = "none";
-    //         if (result.status == 0) {
-    //         }
-    //     },
-    // });
+    await $.ajax({
+        method: 'POST',
+        url: `${API_ENDPOINT}/api/reflects/reflectsByID`,
+        headers: {
+            'Authorization': fakeToken,
+        },
+        data: {
+            reflectID: getId()
+        },
+        success: async function (result) {
+            loadingView.style.display = "none";
+            if (result.status == 0) {
+                data = result.data;
+                transformData(result.data);
+            }
+        },
+    });
 }
 
 init();
@@ -266,9 +92,9 @@ function transformData(data) {
 
     // list-comment reflect
     let hashTypeComment = ['Comment', 'ReflectAssign', 'ReflectProcess'];
-    console.log(data);
     let { listComment } = data;
     let allCommentDisplay = '';
+    let commentCompleteReflect = '';
     if (listComment) {
         listComment.forEach(element => {
             if (hashTypeComment.includes(element.type)) {
@@ -281,11 +107,7 @@ function transformData(data) {
                         break;
                     }
                     case 'ReflectProcess': {
-                        if (element.status == 6) {
-                            item += '<li>' +
-                                '<span>' + '<span style = "font-weight : 600">' + element.createdByName + '</span>' + ' đã xác nhận hoàn thành ' + '<span>' + " (" + transformDate(element.meta.timeCreated, 'hour') + ")" +
-                                '</li >'
-                        } else {
+                        if (element.status != 6) {
                             item += '<li>' +
                                 '<span>' + '<span style = "font-weight : 600">' + element.createdByName + '</span>' + ' đã chuyển sang ' + `<span style = "font-weight : 600" id = '${setIdStatus(element.status)}'>` + customStatus(element.status) + '</span>' + '<span>' + " (" + transformDate(element.meta.timeCreated, 'hour') + ")" +
                                 '</li >'
@@ -294,19 +116,102 @@ function transformData(data) {
                     case 'Comment': {
                         if (element.msgType == 'Text') {
                             item += `<img class="user-avatar" src="${element.avatar ? element.avatar : 'https://i.imgur.com/sR0YxV7.png'}">` +
-                                `<div style="padding-top : 5px;float : left">` + `<span class="name">${element.fullName}</span>` + '<br>' + " (" + transformDate(element.meta.timeCreated, 'hour') + ")" +
+                                `<div style="padding-top : 5px;float : left">` + `<span class="name" style = 'font-weight : 600'>${element.fullName}</span>` + '<br>' + `<span class="name">${element.content[0]}</span>` + '<br>' + " (" + transformDate(element.meta.timeCreated, 'hour') + ")" +
                                 '</div>' + '<div style = "clear : both"></div>'
                         }
                         break;
                     }
                 }
+                if (element.type == 'ReflectProcess' && element.status == 6) {
+                    commentCompleteReflect += '<li>' +
+                        '<span>' + '<span style = "font-weight : 600">' + element.createdByName + '</span>' + ' đã xác nhận hoàn thành ' + '<span>' + " (" + transformDate(element.meta.timeCreated, 'hour') + ")" +
+                        '</li >'
+                }
                 allCommentDisplay += item;
             }
         });
     }
-    document.getElementById("list-comment").innerHTML = allCommentDisplay;
-
+    document.getElementById("list-comment").innerHTML = allCommentDisplay + commentCompleteReflect;
 }
+
+function onChangeImage(event, type) {
+    let target = event.target || event.srcElement;
+    var files = document.getElementById("file-input").files;
+    let lists = [];
+    for (var i = 0; i < files.length; i++) {
+        lists.push(files[i]);
+    }
+    listFile = Object.assign({}, { type, files: [...lists] })
+    if (listFile.type == 'Image') {
+        let listFileResponse = [];
+        let files$ = of(listFile.files);
+        files$.pipe(
+            map(files => {
+                files.map(value => {
+                    let form = new FormData();
+                    form.append('files', value);
+                    return ajax({
+                        method: "POST",
+                        url: `${API_ENDPOINT}/api/files/upload`,
+                        body: form
+                    }).pipe(
+                        catchError(error => of(null)),
+                        tap(res => {
+                            if (res.response.success) {
+                                listFileResponse.push(res.response.file);
+                            }
+                        })
+                    );
+                })
+            }),
+            concatMap(values => forkJoin(...values))
+        ).subscribe(async res => {
+            console.log(res);
+        })
+    }
+}
+// comment area
+let buttonComment = document.querySelector('#conment-button');
+let valueText
+fromEvent(buttonComment, 'click').pipe(
+    map(() => {
+        valueText = document.getElementById('content-comment').value
+        let body;
+        if (typeof data.lastProcess != 'undefined') {
+            body = {
+                reflectID: data.id,
+                reflectProcessID: data.lastProcess.id,
+                content: new Array(valueText),
+                msgType: 'Text',
+            }
+        } else {
+            body = {
+                reflectID: data.id,
+                content: new Array(valueText),
+                msgType: 'Text',
+            }
+        }
+        return body;
+    }),
+    exhaustMap(body => {
+        return ajax({
+            url: `${API_ENDPOINT}/api/comments/create`,
+            method: 'POST',
+            headers: {
+                'Authorization': fakeToken,
+                'Content-Type': 'application/json',
+            },
+            body,
+        })
+    })
+).subscribe(res => {
+    if (res.status == 200) {
+        if (res.response.status == 0) {
+            document.getElementById('content-comment').value = '';
+            init();
+        }
+    }
+});
 
 function toggleContent() {
     $('#colspan-expland').toggleClass('active');

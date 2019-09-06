@@ -124,6 +124,8 @@
 
   #reaction-reflect {
     margin-top: 40px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ebebeb;
   }
 
   #reaction-reflect #list-comment{
@@ -141,3 +143,37 @@
   #status-5 {color: #0ad9e9}
   #status-6 {color: #77e830}
   #status-7 {color: #000000}
+  .input-comment {
+    margin-top: 17px;
+    padding: 0 12px;
+  }
+ .input-comment textarea {
+    border: 1px solid #ebebeb;
+    outline: none;
+  }
+  .input-comment .comment-button{
+    margin-top: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    background: #5D66DD;
+    padding: 8px 15px;
+    outline: none;
+  }
+  .image-upload {
+    position: absolute;
+  }
+  .image-upload > input {
+    display: none;
+  }
+  .image-upload img {
+    width: 80px;
+    cursor: pointer;
+  }
+  .image-upload label {
+    position: absolute;
+    font-size: 24px;
+    bottom: -5px;
+    left: 25px;
+  }
